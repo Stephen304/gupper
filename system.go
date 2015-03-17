@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/martini-contrib/render"
 	"log"
 )
 
@@ -23,8 +24,11 @@ type System struct {
 	Metrics  []Metric
 }
 
-func ReportMetrics(systems *[]System) {
+func ReportMetrics(systems *[]System, r render.Render) {
+	result := make(map[string]interface{})
 	for _, system := range *systems {
 		log.Println(system.Name)
+		result[system.Name] = system.Metrics
 	}
+	r.JSON(200, result)
 }

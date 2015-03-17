@@ -19,12 +19,13 @@ func NewAPI(systems *[]System) *API {
 		AllowMethods:  []string{"GET"},
 		ExposeHeaders: []string{"Content-Length"},
 	}))
+	m.Map(systems)
 	// m.Use(staticbin.Static("web", Asset))
 	return &API{m, systems}
 }
 
 func (api *API) AddRoutes() {
-	//
+	api.M.Get("/status", ReportMetrics)
 }
 
 func (api *API) Run(port string) {
