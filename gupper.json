@@ -1,0 +1,22 @@
+{
+  "systems": [
+    {
+      "name": "Internet Uptime",
+      "commands": [
+        "gupper-ping google.com",
+        "gupper-ping facebook.com",
+        "gupper-ping youtube.com",
+        "gupper-ping baidu.com",
+        "gupper-ping yahoo.com",
+        "gupper-ping wikipedia.org",
+        "gupper-ping amazon.com",
+        "gupper-ping twitter.com",
+        "gupper-ping qq.com",
+        "gupper-ping taobao.com"
+      ],
+      "values": [
+        "latency"
+      ]
+    }
+  ]
+}
