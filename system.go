@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/antonholmquist/jason"
 	"log"
 )
 
@@ -24,26 +23,8 @@ type System struct {
 	Metrics  []Metric
 }
 
-// All system's status history
-type Status struct {
-	Systems []System
-}
-
-func ParseSystems(systemCfg []*jason.Object) Status {
-	var status Status
-	for _, system := range systemCfg {
-		name, err1 := system.GetString("name")
-		commands, err2 := system.GetStringArray("commands")
-		if err1 == nil && err2 == nil {
-			var metric []Metric
-			status.Systems = append(status.Systems, System{name, commands, metric})
-		}
-	}
-	return status
-}
-
-func ReportMetrics(status Status) {
-	for _, system := range status.Systems {
+func ReportMetrics(systems *[]System) {
+	for _, system := range *systems {
 		log.Println(system.Name)
 	}
 }

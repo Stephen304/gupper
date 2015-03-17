@@ -7,10 +7,11 @@ import (
 )
 
 type API struct {
-	M *martini.ClassicMartini
+	M       *martini.ClassicMartini
+	Systems *[]System
 }
 
-func NewAPI() *API {
+func NewAPI(systems *[]System) *API {
 	m := martini.Classic()
 	m.Use(render.Renderer())
 	m.Use(cors.Allow(&cors.Options{
@@ -19,11 +20,11 @@ func NewAPI() *API {
 		ExposeHeaders: []string{"Content-Length"},
 	}))
 	// m.Use(staticbin.Static("web", Asset))
-	return &API{m}
+	return &API{m, systems}
 }
 
 func (api *API) AddRoutes() {
-	// api.M.Get("/status", torrentDB.Stats)
+	//
 }
 
 func (api *API) Run(port string) {
