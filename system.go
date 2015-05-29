@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/martini-contrib/render"
 	"log"
+
+	"github.com/martini-contrib/render"
 )
 
 // One data point
@@ -14,7 +15,7 @@ type DataPoint struct {
 // One value's history
 type Metric struct {
 	Name string
-	Data [144]DataPoint
+	Data [144]DataPoint // Default is 144 points in 10 min intervals for 24 hours
 }
 
 // One system's status history

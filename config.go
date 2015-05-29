@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/antonholmquist/jason"
 	"io/ioutil"
 	"log"
 	"os"
+
+	"github.com/antonholmquist/jason"
 )
 
 func ReadConfig(filename string) *jason.Object {
@@ -32,7 +33,8 @@ func ReadSystems(json *jason.Object) *[]System {
 		name, err1 := system.GetString("name")
 		commands, err2 := system.GetStringArray("commands")
 		if err1 == nil && err2 == nil {
-			var metric []Metric
+			// Add extra values here later - all commands should give uptime at least
+			metric := []Metric{Metric{Name: "Uptime"}}
 			systems = append(systems, System{name, commands, metric})
 		}
 	}
